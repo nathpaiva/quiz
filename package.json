@@ -6,12 +6,17 @@
   "scripts": {
     "start:server": "node ./src/server/server.js",
     "start:client": "react-scripts start",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --collectCoverage=true --watchAll",
     "start": "concurrently npm:start:client npm:start:server",
     "build": "react-scripts build"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "jest-styled-components": "^7.0.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "styled-components": "^5.1.1",
