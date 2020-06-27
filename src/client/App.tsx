@@ -1,4 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, {
+  FC, useEffect, useState, useCallback,
+} from 'react';
 import styled from 'styled-components';
 import {
   spliteArray,
@@ -54,10 +56,10 @@ export const App:FC = () => {
     currentListQuestion: spliteArray(questionShuffle, quantityQuestionsPerMatch),
   });
 
-  const prepareGameToStart = () => {
+  const prepareGameToStart = useCallback(() => {
     const questionShuffle = shuffle(listQuestions);
     setQuestionsRound(prepareQuestionsRound(questionShuffle));
-  };
+  }, [listQuestions]);
 
   useEffect(() => {
     const fetchApiQuestions = async () => {
@@ -75,7 +77,7 @@ export const App:FC = () => {
 
   useEffect(() => {
     prepareGameToStart();
-  }, [listQuestions]);
+  }, [prepareGameToStart, listQuestions]);
 
   const handleClickSubmitQuestion = (isCorrect: boolean) => {
     const nextQuestion = matchStep + 1;
@@ -117,7 +119,9 @@ export const App:FC = () => {
 
   const shuffleListAnswers = () => {
     const currentQuestion = questionsRound.currentListQuestion[questionsRound.current][matchStep];
-    return currentQuestion.type !== 'text' ? shuffle(currentQuestion.incorrect_answers.concat(currentQuestion.correct_answer)) : null;
+    if (currentQuestion.type === 'text') return null;
+
+    return shuffle(currentQuestion.incorrect_answers.concat(currentQuestion.correct_answer));
   };
 
   return (
