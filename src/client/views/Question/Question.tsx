@@ -4,6 +4,8 @@ import React, {
 } from 'react';
 
 import Card from '../../components/Card';
+import Input from '../../components/Input';
+import InputText from '../../components/InputText';
 import Button from '../../components/Button';
 
 interface Questions {
@@ -20,6 +22,8 @@ interface Props {
   answers: Array<string>,
   handleClick: (isCorrect: boolean) => void
 };
+
+const generateKey = (index: number, correctAnswer: string) => `${index}-${correctAnswer.replace(/ /g, '')}`;
 
 const ContainerQuestion:FC<Props> = ({
   question, handleClick, answers,
@@ -40,29 +44,15 @@ const ContainerQuestion:FC<Props> = ({
       {answers && (
         <ul>
           {answers.map((answer: string, index: number) => (
-            <li key={index}>
-              <label
-
-                htmlFor={answer}
-                onChange={() => {
-                  setSelectable(answer);
-                }}
-              >
-                <input type="radio" id={answer} name="answers" />
-                <span dangerouslySetInnerHTML={{ __html: answer }} />
-              </label>
+            <li key={generateKey(index, question.correct_answer)}>
+              <Input answer={answer} onChange={setSelectable} />
             </li>
           ))}
         </ul>
       )}
 
       {!answers && (
-        <input
-          type="text"
-          onChange={(event) => {
-            setSelectable(event.target.value);
-          }}
-        />
+        <InputText onChange={setSelectable} />
       )}
 
       <Button disabled={!selectable} type="submit">

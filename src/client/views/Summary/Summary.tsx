@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
+
 import Card from '../../components/Card';
 import Button from '../../components/Button';
+import LabelSummary from '../../components/LabelSummary';
 
 interface Props {
   correct: number
@@ -11,28 +13,14 @@ interface Props {
 const Summary:FC<Props> = ({ correct, wrong, onClick }: Props) => (
   <Card>
     <h3>Summary</h3>
-    <p>
-      <strong>Correct:</strong>
-      {' '}
-      {correct}
-    </p>
 
-    <p>
-      <strong>Wrong:</strong>
-      {' '}
-      {wrong}
-    </p>
+    <LabelSummary title="Correct" value={correct} />
 
-    <p>
-      <strong>Questions Answered:</strong>
-      {' '}
-      {correct + wrong}
-    </p>
-    <p>
-      <strong>Final Score:</strong>
-      {' '}
-      {`${(correct / (correct + wrong)) * 100}%`}
-    </p>
+    <LabelSummary title="Wrong" value={wrong} />
+
+    <LabelSummary title="Questions Answered" value={correct + wrong} />
+
+    <LabelSummary title="Final Score" value={`${(correct / (correct + wrong)) * 100}%`} />
 
     <Button isReset type="button" onClick={onClick}>Restart Quiz</Button>
   </Card>

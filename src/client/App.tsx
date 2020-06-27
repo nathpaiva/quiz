@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
+import styled from 'styled-components';
 import {
   spliteArray,
   shuffle,
@@ -31,6 +32,12 @@ const initialStateSummary: IStateSummary = {
   wrong: 0,
 };
 
+const Container = styled.section`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const App:FC = () => {
   const quantityQuestionsPerMatch = 10;
   const [listQuestions, setListQuestions] = useState<[]>([]);
@@ -47,6 +54,11 @@ export const App:FC = () => {
     currentListQuestion: spliteArray(questionShuffle, quantityQuestionsPerMatch),
   });
 
+  const prepareGameToStart = () => {
+    const questionShuffle = shuffle(listQuestions);
+    setQuestionsRound(prepareQuestionsRound(questionShuffle));
+  };
+
   useEffect(() => {
     const fetchApiQuestions = async () => {
       try {
@@ -62,8 +74,7 @@ export const App:FC = () => {
   }, []);
 
   useEffect(() => {
-    const questionShuffle = shuffle(listQuestions);
-    setQuestionsRound(prepareQuestionsRound(questionShuffle));
+    prepareGameToStart();
   }, [listQuestions]);
 
   const handleClickSubmitQuestion = (isCorrect: boolean) => {
@@ -82,11 +93,6 @@ export const App:FC = () => {
     setMatchStep(nextQuestion);
   };
 
-  const restartGame = () => {
-    const questionShuffle = shuffle(listQuestions);
-    setQuestionsRound(prepareQuestionsRound(questionShuffle));
-  };
-
   const handleClickRestartQuiz = () => {
     const nextQuestionsRoundCurrent = questionsRound.current + 1;
 
@@ -99,7 +105,7 @@ export const App:FC = () => {
     setDisplaySumary(false);
 
     if (nextQuestionsRoundCurrent === questionsRound.currentListQuestion.length) {
-      restartGame();
+      prepareGameToStart();
       return;
     }
 
@@ -115,7 +121,7 @@ export const App:FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Container>
       <Reset />
       {!!questionsRound.currentListQuestion.length && !displaySumary && (
         <Question
@@ -132,6 +138,6 @@ export const App:FC = () => {
           onClick={handleClickRestartQuiz}
         />
       )}
-    </div>
+    </Container>
   );
 };
