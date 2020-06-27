@@ -8,6 +8,9 @@ import {
 } from './helpers';
 
 import Reset from './components/Reset';
+import Notification from './components/Notification';
+
+import { fetchApiQuestions } from './api';
 
 import Question from './views/Question';
 import Summary from './views/Summary';
@@ -49,6 +52,7 @@ export const App:FC = () => {
   const [matchStep, setMatchStep] = useState<number>(0);
   const [summary, setSummary] = useState<IStateSummary>(initialStateSummary);
   const [displaySumary, setDisplaySumary] = useState<boolean>(false);
+  const [apiERROR, setApiERROR] = useState<boolean>(false);
 
   const prepareQuestionsRound = (questionShuffle: any): IStateQuestionRound => ({
     total: questionShuffle.length / quantityQuestionsPerMatch,
@@ -62,17 +66,17 @@ export const App:FC = () => {
   }, [listQuestions]);
 
   useEffect(() => {
-    const fetchApiQuestions = async () => {
-      try {
-        const response = await fetch('http://localhost:4000/api/questions');
-        const { results } = await response.json();
-
-        setListQuestions(results);
-      } catch (error) {
+    async function apiCall() {
+      const resolve = await fetchApiQuestions();
+      if (resolve === 'error') {
         setListQuestions([]);
+        setApiERROR(true);
+        return;
       }
-    };
-    fetchApiQuestions();
+      setApiERROR(false);
+      setListQuestions(resolve);
+    }
+    apiCall();
   }, []);
 
   useEffect(() => {
@@ -127,6 +131,11 @@ export const App:FC = () => {
   return (
     <Container>
       <Reset />
+      {!listQuestions.length && !apiERROR && <Notification>Loading...</Notification>}
+      {apiERROR && (
+        <Notification error>Sorry we have some problem to load questions...</Notification>
+      )}
+
       {!!questionsRound.currentListQuestion.length && !displaySumary && (
         <Question
           question={questionsRound.currentListQuestion[questionsRound.current][matchStep]}
