@@ -1,0 +1,46 @@
+{
+  "name": "ui-code-assessment",
+  "version": "1.0.0",
+  "author": "Nath Paiva",
+  "main": "src/index.js",
+  "scripts": {
+    "start:server": "node ./src/server/server.js",
+    "start:client": "react-scripts start",
+    "start": "concurrently npm:start:client npm:start:server",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "typescript": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.11",
+    "@typescript-eslint/eslint-plugin": "^3.4.0",
+    "@typescript-eslint/parser": "^3.4.0",
+    "concurrently": "^5.0.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "prettier": "^2.0.5",
+    "react-scripts": "^3.2.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
