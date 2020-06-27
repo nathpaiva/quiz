@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import Card from '../../components/Card';
+import Button from '../../components/Button';
 
 interface Props {
   correct: number
@@ -7,10 +9,8 @@ interface Props {
 };
 
 const Summary:FC<Props> = ({ correct, wrong, onClick }: Props) => (
-  <div style={{
-    maxWidth: '400px', height: '200px', display: 'flex', flexFlow: 'column', justifyContent: 'space-between',
-  }}
-  >
+  <Card>
+    <h3>Summary</h3>
     <p>
       <strong>Correct:</strong>
       {' '}
@@ -34,8 +34,8 @@ const Summary:FC<Props> = ({ correct, wrong, onClick }: Props) => (
       {`${(correct / (correct + wrong)) * 100}%`}
     </p>
 
-    <button style={{ backgroundColor: 'red' }} type="button" onClick={onClick}>reset</button>
-  </div>
+    <Button isReset type="button" onClick={onClick}>Restart Quiz</Button>
+  </Card>
 );
 
 export default Summary;
