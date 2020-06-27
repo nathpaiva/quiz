@@ -4,6 +4,9 @@ import {
   shuffle,
 } from './helpers';
 
+import Reset from './components/Reset';
+
+import Question from './views/Question';
 import Summary from './views/Summary';
 
 interface IStateQuestionRound {
@@ -113,8 +116,14 @@ export const App:FC = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>Lucid</h1>
-      <h2>Welcome to UI Team code assessment!</h2>
+      <Reset />
+      {!!questionsRound.currentListQuestion.length && !displaySumary && (
+        <Question
+          question={questionsRound.currentListQuestion[questionsRound.current][matchStep]}
+          answers={shuffleListAnswers()}
+          handleClick={handleClickSubmitQuestion}
+        />
+      )}
 
       {displaySumary && (
         <Summary
