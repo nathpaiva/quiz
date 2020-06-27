@@ -52,7 +52,7 @@ const ContainerQuestion:FC<Props> = ({
       )}
 
       {!answers && (
-        <InputText onChange={setSelectable} />
+        <InputText answers={question.question} onChange={setSelectable} />
       )}
 
       <Button disabled={!selectable} type="submit">
