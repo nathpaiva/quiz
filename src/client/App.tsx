@@ -47,7 +47,7 @@ const Container = styled.section`
 export const App:FC = () => {
   const quantityQuestionsPerMatch = 10;
   const [{ data, isLoading, apiERROR }, fetchAPI] = useFecthApi();
-  const [questionsRound, setQuestionsRound] = useState<IStateQuestionRound>(
+  const [listQuestionsPerRound, setListQuestionsPerRound] = useState<IStateQuestionRound>(
     initialStateQuestionRound,
   );
   const [matchStep, setMatchStep] = useState<number>(0);
@@ -66,7 +66,7 @@ export const App:FC = () => {
 
   const prepareGameToStart = useCallback(() => {
     const questionShuffle = shuffle(data);
-    setQuestionsRound(prepareQuestionsRound(questionShuffle));
+    setListQuestionsPerRound(prepareQuestionsRound(questionShuffle));
   }, [data]);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ export const App:FC = () => {
       wrong: !isCorrect ? (summary.wrong + 1) : summary.wrong,
     });
 
-    if (nextQuestion === questionsRound.currentListQuestion.length) {
+    if (nextQuestion === listQuestionsPerRound.currentListQuestion.length) {
       setDisplaySumary(true);
       return;
     }
@@ -90,7 +90,7 @@ export const App:FC = () => {
   };
 
   const handleClickRestartQuiz = () => {
-    const nextQuestionsRoundCurrent = questionsRound.current + 1;
+    const nextQuestionsRoundCurrent = listQuestionsPerRound.current + 1;
 
     setMatchStep(0);
     setSummary({
@@ -100,19 +100,19 @@ export const App:FC = () => {
 
     setDisplaySumary(false);
 
-    if (nextQuestionsRoundCurrent === questionsRound.currentListQuestion.length) {
+    if (nextQuestionsRoundCurrent === listQuestionsPerRound.currentListQuestion.length) {
       prepareGameToStart();
       return;
     }
 
-    setQuestionsRound({
-      ...questionsRound,
+    setListQuestionsPerRound({
+      ...listQuestionsPerRound,
       current: nextQuestionsRoundCurrent,
     });
   };
 
   const shuffleListAnswers = () => {
-    const currentQuestion = questionsRound.currentListQuestion[questionsRound.current][matchStep];
+    const currentQuestion = listQuestionsPerRound.currentListQuestion[listQuestionsPerRound.current][matchStep];
     if (currentQuestion.type === 'text') return null;
 
     return shuffle(currentQuestion.incorrect_answers.concat(currentQuestion.correct_answer));
@@ -127,9 +127,9 @@ export const App:FC = () => {
         <Notification error>Sorry we have some problem to load questions...</Notification>
       )}
 
-      {!!questionsRound.currentListQuestion.length && !displaySumary && (
+      {!!listQuestionsPerRound.currentListQuestion.length && !displaySumary && (
         <Question
-          question={questionsRound.currentListQuestion[questionsRound.current][matchStep]}
+          question={listQuestionsPerRound.currentListQuestion[listQuestionsPerRound.current][matchStep]}
           answers={shuffleListAnswers()}
           handleClick={handleClickSubmitQuestion}
         />
