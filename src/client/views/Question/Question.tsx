@@ -28,7 +28,7 @@ const generateKey = (index: number, correctAnswer: string) => `${index}-${correc
 const ContainerQuestion:FC<Props> = ({
   question, handleClick, answers,
 }: Props) => {
-  const [selectable, setSelectable] = useState('');
+  const [selectable, setSelectable] = useState<string>('');
   return (
     <Card
       as="form"
