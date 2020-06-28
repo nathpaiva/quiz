@@ -10,7 +10,8 @@ import {
 import Reset from './components/Reset';
 import Notification from './components/Notification';
 
-import { fetchApiQuestions } from './api';
+import { useFecthApi } from './hooks';
+import { PATH as API } from './constants';
 
 import Question from './views/Question';
 import Summary from './views/Summary';
@@ -45,14 +46,17 @@ const Container = styled.section`
 
 export const App:FC = () => {
   const quantityQuestionsPerMatch = 10;
-  const [listQuestions, setListQuestions] = useState<[]>([]);
+  const [{ data, isLoading, apiERROR }, fetchAPI] = useFecthApi();
   const [questionsRound, setQuestionsRound] = useState<IStateQuestionRound>(
     initialStateQuestionRound,
   );
   const [matchStep, setMatchStep] = useState<number>(0);
   const [summary, setSummary] = useState<IStateSummary>(initialStateSummary);
   const [displaySumary, setDisplaySumary] = useState<boolean>(false);
-  const [apiERROR, setApiERROR] = useState<boolean>(false);
+
+  useEffect(() => {
+    fetchAPI(API.QUESTIONS);
+  }, [fetchAPI]);
 
   const prepareQuestionsRound = (questionShuffle: any): IStateQuestionRound => ({
     total: questionShuffle.length / quantityQuestionsPerMatch,
@@ -61,27 +65,13 @@ export const App:FC = () => {
   });
 
   const prepareGameToStart = useCallback(() => {
-    const questionShuffle = shuffle(listQuestions);
+    const questionShuffle = shuffle(data);
     setQuestionsRound(prepareQuestionsRound(questionShuffle));
-  }, [listQuestions]);
-
-  useEffect(() => {
-    async function apiCall() {
-      const resolve = await fetchApiQuestions();
-      if (resolve === 'error') {
-        setListQuestions([]);
-        setApiERROR(true);
-        return;
-      }
-      setApiERROR(false);
-      setListQuestions(resolve);
-    }
-    apiCall();
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     prepareGameToStart();
-  }, [prepareGameToStart, listQuestions]);
+  }, [prepareGameToStart, data]);
 
   const handleClickSubmitQuestion = (isCorrect: boolean) => {
     const nextQuestion = matchStep + 1;
@@ -131,7 +121,8 @@ export const App:FC = () => {
   return (
     <Container>
       <Reset />
-      {!listQuestions.length && !apiERROR && <Notification>Loading...</Notification>}
+      {isLoading && <Notification>Loading...</Notification>}
+
       {apiERROR && (
         <Notification error>Sorry we have some problem to load questions...</Notification>
       )}
