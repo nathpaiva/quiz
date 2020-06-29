@@ -11,13 +11,13 @@ npm install
 - Run it locally
 
 ```sh
-npm start
+npm start:
 ```
 
-- Run tests
+- Run tests:
 
 ```sh
-npm test
+npm run test:coverage
 ```
 
 The command above will:
