@@ -12,7 +12,7 @@ describe('Card', () => {
     expect(getElement).toBeInTheDocument()
     expect(getElement).toHaveStyleRule(
       'box-shadow',
-      '0 0 4px rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.06),0 16px 24px rgba(0,0,0,0.06),0 24px 32px rgba(0,0,0,0.06)',
+      '0 0 4px rgba(0, 0, 0, 0.06),0 4px 12px rgba(0, 0, 0, 0.06),0 16px 24px rgba(0, 0, 0, 0.06),0 24px 32px rgba(0, 0, 0, 0.06)',
     )
   })
 })

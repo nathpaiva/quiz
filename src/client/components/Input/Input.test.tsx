@@ -3,7 +3,7 @@ import React from 'react'
 import 'jest-styled-components'
 import '@testing-library/jest-dom'
 
-import Input from '.'
+import { Input } from '.'
 
 describe('Input', () => {
   test('should render a Input radio', () => {
