@@ -7,8 +7,10 @@
     "start:client": "react-scripts start",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --collectCoverage=true --watchAll",
+    "test:ci": "react-scripts test --collectCoverage=true",
     "start": "concurrently npm:start:client npm:start:server",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "lint": "eslint src/**/*.ts src/**/*.tsx"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.0",
