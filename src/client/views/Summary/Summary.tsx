@@ -1,6 +1,6 @@
-import Card from '../../components/Card'
 import Button from '../../components/Button'
-import LabelSummary from '../../components/LabelSummary'
+import Card from '../../components/Card'
+import Label from '../../components/Label'
 
 interface Props {
   correct: number
@@ -12,13 +12,13 @@ const Summary = ({ correct, wrong, onClick }: Props) => (
   <Card>
     <h3>Summary</h3>
 
-    <LabelSummary title="Correct" value={correct} />
+    <Label title="Correct" value={correct} />
 
-    <LabelSummary title="Wrong" value={wrong} />
+    <Label title="Wrong" value={wrong} />
 
-    <LabelSummary title="Questions Answered" value={correct + wrong} />
+    <Label title="Questions Answered" value={correct + wrong} />
 
-    <LabelSummary
+    <Label
       title="Final Score"
       value={`${(correct / (correct + wrong)) * 100}%`}
     />

@@ -5,11 +5,11 @@ const Label = styled.label`
   flex-flow: column;
 `
 
-interface Props {
+interface InputTextProps {
   answer: string
   onChange: (event: any) => void
 }
-const InputText = ({ answer, onChange }: Props) => (
+const InputText = ({ answer, onChange }: InputTextProps) => (
   <Label htmlFor={answer}>
     Type your response:
     <input
