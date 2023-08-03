@@ -5,12 +5,12 @@ import { Reset, Notification } from './components'
 import { PATH as API } from './constants'
 import { spliceArray, shuffle } from './helpers'
 import { useFetchApi } from './hooks'
-import { Question, Summary } from './views'
+import { Question, QuestionsSchema, Summary } from './views'
 
 interface IStateQuestionRound {
   total: number
   current: number
-  currentListQuestion: any
+  currentListQuestion: QuestionsSchema[][]
 }
 
 const initialStateQuestionRound: IStateQuestionRound = {
@@ -42,14 +42,14 @@ export const App = () => {
     useState<IStateQuestionRound>(initialStateQuestionRound)
   const [matchStep, setMatchStep] = useState<number>(0)
   const [summary, setSummary] = useState<IStateSummary>(initialStateSummary)
-  const [displaySumary, setDisplaySumary] = useState<boolean>(false)
+  const [displaySummary, setDisplaySummary] = useState<boolean>(false)
 
   useEffect(() => {
     fetchAPI(API.QUESTIONS)
   }, [fetchAPI])
 
   const prepareQuestionsRound = (
-    questionShuffle: any,
+    questionShuffle: QuestionsSchema[],
   ): IStateQuestionRound => ({
     total: questionShuffle.length / quantityQuestionsPerMatch,
     current: 0,
@@ -77,7 +77,7 @@ export const App = () => {
     })
 
     if (nextQuestion === listQuestionsPerRound.currentListQuestion.length) {
-      setDisplaySumary(true)
+      setDisplaySummary(true)
       return
     }
 
@@ -93,7 +93,7 @@ export const App = () => {
       wrong: 0,
     })
 
-    setDisplaySumary(false)
+    setDisplaySummary(false)
 
     if (
       nextQuestionsRoundCurrent ===
@@ -132,19 +132,20 @@ export const App = () => {
         </Notification>
       )}
 
-      {!!listQuestionsPerRound.currentListQuestion.length && !displaySumary && (
-        <Question
-          question={
-            listQuestionsPerRound.currentListQuestion[
-              listQuestionsPerRound.current
-            ][matchStep]
-          }
-          answers={shuffleListAnswers()}
-          handleClick={handleClickSubmitQuestion}
-        />
-      )}
+      {!!listQuestionsPerRound.currentListQuestion.length &&
+        !displaySummary && (
+          <Question
+            question={
+              listQuestionsPerRound.currentListQuestion[
+                listQuestionsPerRound.current
+              ][matchStep]
+            }
+            answers={shuffleListAnswers()}
+            handleClick={handleClickSubmitQuestion}
+          />
+        )}
 
-      {displaySumary && (
+      {displaySummary && (
         <Summary
           correct={summary.correct}
           wrong={summary.wrong}

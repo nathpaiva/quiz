@@ -1,4 +1,7 @@
-export function shuffle(arr: any): string[] {
+import { QuestionsSchema } from '../views'
+
+// TODO change this function to use a generic type
+export function shuffle(arr: any[]): any[] {
   let currentIndex = arr.length
   let temporaryValue
   let randomIndex
@@ -17,9 +20,9 @@ export function shuffle(arr: any): string[] {
 }
 
 export function spliceArray(
-  arrayToSplice: any,
+  arrayToSplice: QuestionsSchema[],
   quantitySize: number,
-): string[] {
+): QuestionsSchema[][] {
   const results = []
 
   while (arrayToSplice.length) {

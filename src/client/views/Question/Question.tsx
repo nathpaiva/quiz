@@ -35,10 +35,9 @@ export const Question = ({ question, handleClick, answers }: QuestionProps) => {
       }}
     >
       <h3 dangerouslySetInnerHTML={{ __html: question.question }} />
-
       {answers && (
         <ul>
-          {answers.map((answer: string, index: number) => (
+          {answers.map((answer, index) => (
             <li key={generateKey(index, question.correct_answer)}>
               <Input answer={answer} onChange={setSelectable} />
             </li>

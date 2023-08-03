@@ -1,5 +1,5 @@
 interface InputProps {
-  answer: string
+  answer: any
   onChange: (answer: string) => void
 }
 export const Input = ({ answer, onChange }: InputProps) => (
