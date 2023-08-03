@@ -1,49 +1,43 @@
-/* eslint-disable camelcase */
-import React, {
-  FC, useState,
-} from 'react';
+import { useState } from 'react'
 
-import Card from '../../components/Card';
-import Input from '../../components/Input';
-import InputText from '../../components/InputText';
-import Button from '../../components/Button';
+import { Button, Card, Input, InputText } from '../../components'
 
-interface Questions {
-  category: string,
-  type: string,
-  difficulty: string,
-  question: string,
-  correct_answer: string,
-  incorrect_answers: Array<string>
-};
+export interface QuestionsSchema {
+  category: string
+  type: string
+  difficulty: string
+  question: string
+  correct_answer: string
+  incorrect_answers: string[]
+}
 
-interface Props {
-  question: Questions,
-  answers: Array<string>,
+export interface QuestionProps {
+  question: QuestionsSchema
+  answers: string[] | null
   handleClick: (isCorrect: boolean) => void
-};
+}
 
-const generateKey = (index: number, correctAnswer: string) => `${index}-${correctAnswer.replace(/ /g, '')}`;
+const generateKey = (index: number, correctAnswer: string) =>
+  `${index}-${correctAnswer.replace(/ /g, '')}`
 
-const ContainerQuestion:FC<Props> = ({
-  question, handleClick, answers,
-}: Props) => {
-  const [selectable, setSelectable] = useState<string>('');
+export const Question = ({ question, handleClick, answers }: QuestionProps) => {
+  const [selectable, setSelectable] = useState<string>('')
   return (
     <Card
       as="form"
-      onSubmit={(event: any) => {
-        event.preventDefault();
-        const isCorrect = selectable.toLocaleLowerCase() === question.correct_answer.toLocaleLowerCase();
-        handleClick(isCorrect);
-        setSelectable('');
+      onSubmit={(event) => {
+        event.preventDefault()
+        const isCorrect =
+          selectable.toLocaleLowerCase() ===
+          question.correct_answer.toLocaleLowerCase()
+        handleClick(isCorrect)
+        setSelectable('')
       }}
     >
       <h3 dangerouslySetInnerHTML={{ __html: question.question }} />
-
       {answers && (
         <ul>
-          {answers.map((answer: string, index: number) => (
+          {answers.map((answer, index) => (
             <li key={generateKey(index, question.correct_answer)}>
               <Input answer={answer} onChange={setSelectable} />
             </li>
@@ -52,14 +46,12 @@ const ContainerQuestion:FC<Props> = ({
       )}
 
       {!answers && (
-        <InputText answers={question.question} onChange={setSelectable} />
+        <InputText answer={question.question} onChange={setSelectable} />
       )}
 
       <Button disabled={!selectable} type="submit">
         Next question
       </Button>
     </Card>
-  );
-};
-
-export default ContainerQuestion;
+  )
+}

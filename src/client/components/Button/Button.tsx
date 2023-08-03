@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface ButtonProps {
-  readonly isReset: boolean;
-};
+  readonly isReset?: boolean
+}
 
-const Button = styled.button<ButtonProps>`
-  background-color:${({ isReset }) => (isReset ? '#333333' : '#2C7FB8')} ;
+export const Button = styled.button<ButtonProps>`
+  background-color: ${({ isReset }) => (isReset ? '#333333' : '#2C7FB8')};
   border: none;
   border-radius: 2px;
   color: #fff;
@@ -15,8 +15,6 @@ const Button = styled.button<ButtonProps>`
 
   &:disabled {
     cursor: default;
-    opacity: .5;
+    opacity: 0.5;
   }
-`;
-
-export default Button;
+`

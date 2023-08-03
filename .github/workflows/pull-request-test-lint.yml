@@ -1,0 +1,55 @@
+name: Test & Lint & Build
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.0
+          check-latest: true
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: lint
+        run: yarn lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.17.0
+          check-latest: true
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: test
+        run: yarn test:ci

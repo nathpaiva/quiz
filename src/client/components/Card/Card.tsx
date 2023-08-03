@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const Card = styled.div`
+export const Card = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.06), 0 16px 24px rgba(0, 0, 0, 0.06), 0 24px 32px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 0 4px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 16px 24px rgba(0, 0, 0, 0.06),
+    0 24px 32px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-flow: column;
   min-height: 300px;
@@ -17,7 +21,9 @@ const Card = styled.div`
     font-size: 1.125rem;
   }
 
-  p, strong, label {
+  p,
+  strong,
+  label {
     font-size: 0.875rem;
   }
 
@@ -41,13 +47,11 @@ const Card = styled.div`
     }
   }
 
-  input[type="text"] {
+  input[type='text'] {
     padding: 7px;
     margin: 0;
     border-radius: 2px;
     border: 1px solid #ccc;
-    font-size: .875rem;
+    font-size: 0.875rem;
   }
-`;
-
-export default Card;
+`
