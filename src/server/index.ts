@@ -8,11 +8,11 @@ const server = express()
 const port = 4000
 
 // GET question endpoint
-server.get('/api/questions', cors(), (req, res) => {
+server.get('/api/questions', cors(), (_, res) => {
   res.json(data)
 })
 
 // starting server
 server.listen(port, () => {
-  console.log(`Server listening at ${port}`)
+  console.log(`Server listening at ${port}.`)
 })
