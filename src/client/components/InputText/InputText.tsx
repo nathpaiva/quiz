@@ -7,19 +7,17 @@ const Label = styled.label`
 
 interface InputTextProps {
   answer: string
-  onChange: (event: any) => void
+  onChange: (param: string) => void
 }
-const InputText = ({ answer, onChange }: InputTextProps) => (
+export const InputText = ({ answer, onChange }: InputTextProps) => (
   <Label htmlFor={answer}>
     Type your response:
     <input
       type="text"
       id={answer}
       onChange={(event) => {
-        onChange((event.target as any).value)
+        onChange(event.target.value)
       }}
     />
   </Label>
 )
-
-export default InputText

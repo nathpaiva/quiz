@@ -1,1 +1,1 @@
-export { shuffle, spliceArray } from './Helpers'
+export * from './Helpers'

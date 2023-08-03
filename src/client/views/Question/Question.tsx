@@ -1,38 +1,31 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 
-import Card from '../../components/Card'
-import Input from '../../components/Input'
-import InputText from '../../components/InputText'
-import Button from '../../components/Button'
+import { Button, Card, Input, InputText } from '../../components'
 
-interface Questions {
+export interface QuestionsSchema {
   category: string
   type: string
   difficulty: string
   question: string
   correct_answer: string
-  incorrect_answers: Array<string>
+  incorrect_answers: string[]
 }
 
-interface Props {
-  question: Questions
-  answers: Array<string> | null
+export interface QuestionProps {
+  question: QuestionsSchema
+  answers: string[] | null
   handleClick: (isCorrect: boolean) => void
 }
 
 const generateKey = (index: number, correctAnswer: string) =>
   `${index}-${correctAnswer.replace(/ /g, '')}`
 
-const ContainerQuestion: FC<Props> = ({
-  question,
-  handleClick,
-  answers,
-}: Props) => {
+export const Question = ({ question, handleClick, answers }: QuestionProps) => {
   const [selectable, setSelectable] = useState<string>('')
   return (
     <Card
       as="form"
-      onSubmit={(event: any) => {
+      onSubmit={(event) => {
         event.preventDefault()
         const isCorrect =
           selectable.toLocaleLowerCase() ===
@@ -63,5 +56,3 @@ const ContainerQuestion: FC<Props> = ({
     </Card>
   )
 }
-
-export default ContainerQuestion

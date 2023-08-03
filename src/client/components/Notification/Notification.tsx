@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import Card from '../Card'
+
+import { Card } from '../Card'
 
 interface MessageProps {
   readonly error: boolean
@@ -17,8 +18,7 @@ interface NotificationProps {
   error?: boolean
 }
 
-const Notification = ({ error = false, children }: NotificationProps) => (
-  <Message error={error}>{children}</Message>
-)
-
-export default Notification
+export const Notification = ({
+  error = false,
+  children,
+}: NotificationProps) => <Message error={error}>{children}</Message>

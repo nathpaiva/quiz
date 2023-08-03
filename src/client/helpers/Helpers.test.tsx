@@ -10,7 +10,7 @@ describe('Helpers', () => {
     expect(newArr).not.toBe(arr)
   })
   test('should shuffle array', () => {
-    const arr = [1, 2, 3, 4, 5, 6]
+    const arr = ['1', '2', '3', '4', '5', '6']
     const newArr = spliceArray(arr, 2)
     expect(newArr.length).toBe(3)
   })

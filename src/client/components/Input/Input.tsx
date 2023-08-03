@@ -1,10 +1,8 @@
-import React, { FC } from 'react'
-
-interface Props {
+interface InputProps {
   answer: string
   onChange: (answer: string) => void
 }
-const Input: FC<Props> = ({ answer, onChange }: Props) => (
+export const Input = ({ answer, onChange }: InputProps) => (
   <label htmlFor={answer}>
     <input
       type="radio"
@@ -18,5 +16,3 @@ const Input: FC<Props> = ({ answer, onChange }: Props) => (
     <span dangerouslySetInnerHTML={{ __html: answer }} />
   </label>
 )
-
-export default Input

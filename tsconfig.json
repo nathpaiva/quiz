@@ -2,16 +2,15 @@
   "compilerOptions": {
     "rootDir": "src",
 
-    "target": "es2016",
-    "lib": ["es6", "dom"],
+    "target": "es6",
+
+    "lib": ["dom", "dom.iterable", "esnext"],
+
     "moduleResolution": "node",
 
     "module": "commonjs",
 
-    "types": [
-      "node",
-      "@types/jest",
-    ],
+    "types": ["node", "@types/jest"],
     "allowUmdGlobalAccess": true,
     "resolveJsonModule": true,
     "allowJs": true,
@@ -25,4 +24,5 @@
     "jsx": "react-jsx"
   },
   "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }

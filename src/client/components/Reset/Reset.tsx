@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const Reset = createGlobalStyle`
+export const Reset = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   }
@@ -52,5 +52,3 @@ const Reset = createGlobalStyle`
   }
 
 `
-
-export default Reset

@@ -1,9 +1,9 @@
-import React from 'react'
 import { render } from '@testing-library/react'
+import React from 'react'
 import 'jest-styled-components'
 import '@testing-library/jest-dom'
 
-import Label from '.'
+import { Label } from '.'
 
 describe('Label', () => {
   test('should render a Label with title and value', () => {

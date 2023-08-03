@@ -1,1 +1,1 @@
-export { useFetchApi } from './hooks'
+export * from './hooks'

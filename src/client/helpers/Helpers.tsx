@@ -1,4 +1,4 @@
-export function shuffle(arr: any): Array<string> {
+export function shuffle(arr: any): string[] {
   let currentIndex = arr.length
   let temporaryValue
   let randomIndex
@@ -19,7 +19,7 @@ export function shuffle(arr: any): Array<string> {
 export function spliceArray(
   arrayToSplice: any,
   quantitySize: number,
-): Array<string> {
+): string[] {
   const results = []
 
   while (arrayToSplice.length) {

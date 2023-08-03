@@ -1,14 +1,12 @@
-import Button from '../../components/Button'
-import Card from '../../components/Card'
-import Label from '../../components/Label'
+import { Button, Card, Label } from '../../components'
 
-interface Props {
+interface SummaryProps {
   correct: number
   wrong: number
   onClick: () => void
 }
 
-const Summary = ({ correct, wrong, onClick }: Props) => (
+export const Summary = ({ correct, wrong, onClick }: SummaryProps) => (
   <Card>
     <h3>Summary</h3>
 
@@ -28,5 +26,3 @@ const Summary = ({ correct, wrong, onClick }: Props) => (
     </Button>
   </Card>
 )
-
-export default Summary

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Card = styled.div`
+export const Card = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow:
@@ -55,5 +55,3 @@ const Card = styled.div`
     font-size: 0.875rem;
   }
 `
-
-export default Card

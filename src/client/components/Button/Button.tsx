@@ -4,7 +4,7 @@ interface ButtonProps {
   readonly isReset?: boolean
 }
 
-const Button = styled.button<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   background-color: ${({ isReset }) => (isReset ? '#333333' : '#2C7FB8')};
   border: none;
   border-radius: 2px;
@@ -18,5 +18,3 @@ const Button = styled.button<ButtonProps>`
     opacity: 0.5;
   }
 `
-
-export default Button

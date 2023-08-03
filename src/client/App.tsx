@@ -1,15 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { spliceArray, shuffle } from './helpers'
 
-import Reset from './components/Reset'
-import Notification from './components/Notification'
-
-import { useFetchApi } from './hooks'
+import { Reset, Notification } from './components'
 import { PATH as API } from './constants'
-
-import Question from './views/Question'
-import Summary from './views/Summary'
+import { spliceArray, shuffle } from './helpers'
+import { useFetchApi } from './hooks'
+import { Question, Summary } from './views'
 
 interface IStateQuestionRound {
   total: number

@@ -3,7 +3,7 @@ interface LabelProps {
   value: number | string
 }
 
-function Label({ title, value }: LabelProps) {
+export const Label = ({ title, value }: LabelProps) => {
   return (
     <p>
       <strong>{`${title}: `}</strong>
@@ -11,5 +11,3 @@ function Label({ title, value }: LabelProps) {
     </p>
   )
 }
-
-export default Label
