@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 const Reset = createGlobalStyle`
   *, *:before, *:after {
@@ -51,6 +51,6 @@ const Reset = createGlobalStyle`
     border-spacing: 0;
   }
 
-`;
+`
 
-export default Reset;
+export default Reset

@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
-const data = require('./data.json');
+import data from './data.json';
 
 // create server
 const server = express();

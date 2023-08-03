@@ -1,16 +1,14 @@
-import React, { FC } from 'react';
-
-import Card from '../../components/Card';
-import Button from '../../components/Button';
-import LabelSummary from '../../components/LabelSummary';
+import Card from '../../components/Card'
+import Button from '../../components/Button'
+import LabelSummary from '../../components/LabelSummary'
 
 interface Props {
   correct: number
   wrong: number
   onClick: () => void
-};
+}
 
-const Summary:FC<Props> = ({ correct, wrong, onClick }: Props) => (
+const Summary = ({ correct, wrong, onClick }: Props) => (
   <Card>
     <h3>Summary</h3>
 
@@ -20,10 +18,15 @@ const Summary:FC<Props> = ({ correct, wrong, onClick }: Props) => (
 
     <LabelSummary title="Questions Answered" value={correct + wrong} />
 
-    <LabelSummary title="Final Score" value={`${(correct / (correct + wrong)) * 100}%`} />
+    <LabelSummary
+      title="Final Score"
+      value={`${(correct / (correct + wrong)) * 100}%`}
+    />
 
-    <Button isReset type="button" onClick={onClick}>Restart Quiz</Button>
+    <Button isReset type="button" onClick={onClick}>
+      Restart Quiz
+    </Button>
   </Card>
-);
+)
 
-export default Summary;
+export default Summary

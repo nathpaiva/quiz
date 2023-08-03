@@ -1,42 +1,44 @@
-/* eslint-disable camelcase */
-import React, {
-  FC, useState,
-} from 'react';
+import { FC, useState } from 'react'
 
-import Card from '../../components/Card';
-import Input from '../../components/Input';
-import InputText from '../../components/InputText';
-import Button from '../../components/Button';
+import Card from '../../components/Card'
+import Input from '../../components/Input'
+import InputText from '../../components/InputText'
+import Button from '../../components/Button'
 
 interface Questions {
-  category: string,
-  type: string,
-  difficulty: string,
-  question: string,
-  correct_answer: string,
+  category: string
+  type: string
+  difficulty: string
+  question: string
+  correct_answer: string
   incorrect_answers: Array<string>
-};
+}
 
 interface Props {
-  question: Questions,
-  answers: Array<string>,
+  question: Questions
+  answers: Array<string> | null
   handleClick: (isCorrect: boolean) => void
-};
+}
 
-const generateKey = (index: number, correctAnswer: string) => `${index}-${correctAnswer.replace(/ /g, '')}`;
+const generateKey = (index: number, correctAnswer: string) =>
+  `${index}-${correctAnswer.replace(/ /g, '')}`
 
-const ContainerQuestion:FC<Props> = ({
-  question, handleClick, answers,
+const ContainerQuestion: FC<Props> = ({
+  question,
+  handleClick,
+  answers,
 }: Props) => {
-  const [selectable, setSelectable] = useState<string>('');
+  const [selectable, setSelectable] = useState<string>('')
   return (
     <Card
       as="form"
       onSubmit={(event: any) => {
-        event.preventDefault();
-        const isCorrect = selectable.toLocaleLowerCase() === question.correct_answer.toLocaleLowerCase();
-        handleClick(isCorrect);
-        setSelectable('');
+        event.preventDefault()
+        const isCorrect =
+          selectable.toLocaleLowerCase() ===
+          question.correct_answer.toLocaleLowerCase()
+        handleClick(isCorrect)
+        setSelectable('')
       }}
     >
       <h3 dangerouslySetInnerHTML={{ __html: question.question }} />
@@ -52,14 +54,14 @@ const ContainerQuestion:FC<Props> = ({
       )}
 
       {!answers && (
-        <InputText answers={question.question} onChange={setSelectable} />
+        <InputText answer={question.question} onChange={setSelectable} />
       )}
 
       <Button disabled={!selectable} type="submit">
         Next question
       </Button>
     </Card>
-  );
-};
+  )
+}
 
-export default ContainerQuestion;
+export default ContainerQuestion
