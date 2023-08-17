@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 interface ButtonProps {
-  readonly isReset?: boolean
+  readonly $isReset?: boolean
 }
 
 export const Button = styled.button<ButtonProps>`
-  background-color: ${({ isReset }) => (isReset ? '#333333' : '#2C7FB8')};
+  background-color: ${({ $isReset }) => ($isReset ? '#333333' : '#2C7FB8')};
   border: none;
   border-radius: 2px;
   color: #fff;

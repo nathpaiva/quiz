@@ -1,7 +1,5 @@
 import { render, fireEvent } from '@testing-library/react'
 import React from 'react'
-import 'jest-styled-components'
-import '@testing-library/jest-dom'
 
 import { Summary } from '.'
 
@@ -9,7 +7,7 @@ describe('Summary', () => {
   test('should render a Summary', () => {
     const correct = 3
     const wrong = 5
-    const onClick = jest.fn()
+    const onClick = vi.fn()
     const { getByText } = render(
       <Summary correct={correct} wrong={wrong} onClick={onClick} />,
     )

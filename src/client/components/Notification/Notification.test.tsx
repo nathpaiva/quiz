@@ -1,7 +1,5 @@
 import { render } from '@testing-library/react'
 import React from 'react'
-import 'jest-styled-components'
-import '@testing-library/jest-dom'
 
 import { Notification } from '.'
 
@@ -14,7 +12,7 @@ describe('Notification', () => {
   })
   test('should render error message', () => {
     const { getByText } = render(
-      <Notification error>
+      <Notification $error>
         Sorry we have some problem to load questions..
       </Notification>,
     )
