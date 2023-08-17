@@ -21,7 +21,7 @@ export const Summary = ({ correct, wrong, onClick }: SummaryProps) => (
       value={`${(correct / (correct + wrong)) * 100}%`}
     />
 
-    <Button isReset type="button" onClick={onClick}>
+    <Button $isReset type="button" onClick={onClick}>
       Restart Quiz
     </Button>
   </Card>

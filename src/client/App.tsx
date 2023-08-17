@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import styled from 'styled-components'
 
 import { Reset, Notification } from './components'
@@ -127,7 +127,7 @@ export const App = () => {
       {isLoading && <Notification>Loading...</Notification>}
 
       {apiERROR && (
-        <Notification error>
+        <Notification $error>
           Sorry we have some problem to load questions...
         </Notification>
       )}

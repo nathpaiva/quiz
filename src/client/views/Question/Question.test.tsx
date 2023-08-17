@@ -1,13 +1,11 @@
 import { render, fireEvent } from '@testing-library/react'
 import React from 'react'
-import 'jest-styled-components'
-import '@testing-library/jest-dom'
 
 import { Question } from '.'
 import { QuestionsSchema } from './Question'
 
 describe('Question', () => {
-  const onClick = jest.fn()
+  const onClick = vi.fn()
   const question = {
     category: 'Entertainment: Video Games',
     type: 'multiple',

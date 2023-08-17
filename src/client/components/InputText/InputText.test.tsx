@@ -1,13 +1,11 @@
 import { render, fireEvent } from '@testing-library/react'
 import React from 'react'
-import 'jest-styled-components'
-import '@testing-library/jest-dom'
 
 import { InputText } from '.'
 
 describe('InputText', () => {
   test('should render a InputText', () => {
-    const onChange = jest.fn()
+    const onChange = vi.fn()
     const { getByLabelText } = render(
       <InputText answer="Hello?" onChange={onChange} />,
     )

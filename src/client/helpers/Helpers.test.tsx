@@ -1,6 +1,3 @@
-import 'jest-styled-components'
-import '@testing-library/jest-dom'
-
 import { shuffle, spliceArray } from '.'
 
 describe('Helpers', () => {
