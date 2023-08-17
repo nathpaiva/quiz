@@ -13,7 +13,7 @@
     "start": "concurrently yarn:start:client yarn:start:server",
     "start:server": "ts-node ./src/server/index.ts",
     "start:client": "vite",
-    "lint": "eslint \"*/**/*.{ts,tsx}\"",
+    "lint": "eslint \"src/**/**/*.{ts,tsx}\"",
     "format": "eslint \"*/**/*.{ts,tsx}\" --fix"
   },
   "dependencies": {
