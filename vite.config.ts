@@ -38,7 +38,7 @@ export default defineConfig({
       overlay: { initialIsOpen: false },
       typescript: true,
       eslint: {
-        lintCommand: 'eslint "src/client/**/*.{ts,tsx}"',
+        lintCommand: 'eslint "src/**/**/*.{ts,tsx}"',
       },
     }),
     viteTsconfigPaths(),
