@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test:coverage": "vitest --coverage",
+    "test:coverage": "vitest --coverage --run",
     "test": "vitest",
     "test:ui": "vitest --ui --watch --coverage",
     "test:ci": "vitest --coverage --run",
