@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/react'
-import React from 'react'
 
 import { Input } from '.'
 
@@ -15,6 +14,9 @@ describe('Input', () => {
 
     const radio = getByLabelText('first')
     fireEvent.change(radio, { target: { value: 'second' } })
+
+    // TODO: change this code to have the correct type
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     expect((radio as any).value).toBe('second')
   })
 })

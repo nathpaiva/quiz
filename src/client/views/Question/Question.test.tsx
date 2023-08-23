@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/react'
-import React from 'react'
 
 import { Question } from '.'
 import { QuestionsSchema } from './Question'
@@ -38,7 +37,9 @@ describe('Question', () => {
     const radio = getByLabelText(question.incorrect_answers[0])
     expect(radio).toBeInTheDocument()
     fireEvent.click(radio, { target: { value: question.incorrect_answers[0] } })
-    expect(radio.checked).toBe(true)
+    // TODO: change this code to have the correct type
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    expect((radio as any).checked).toBe(true)
 
     expect(getByLabelText(question.incorrect_answers[1])).toBeInTheDocument()
     expect(getByLabelText(question.incorrect_answers[2])).toBeInTheDocument()
@@ -59,6 +60,8 @@ describe('Question', () => {
 
     const inputText = getByLabelText('Type your response:')
     fireEvent.keyPress(inputText, { target: { value: '2020' } })
-    expect(inputText.value).toBe('2020')
+    // TODO: change this code to have the correct type
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    expect((inputText as any).value).toBe('2020')
   })
 })

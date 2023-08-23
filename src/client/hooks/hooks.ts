@@ -20,6 +20,7 @@ export const useFetchApi = (): [IState, (str: string) => void] => {
       try {
         const response = await fetch(`http://localhost:4000${path}`)
         const { results } = await response.json()
+
         setIsLoading(false)
         setApiERROR(false)
         setData(results)
@@ -29,6 +30,7 @@ export const useFetchApi = (): [IState, (str: string) => void] => {
         setApiERROR(true)
       }
     }
+
     apiCall()
   }, [path])
 
